@@ -13,8 +13,8 @@ export class AppComponent {
     private route: Router,
     private translate: TranslateService
   ) {
-    this.translate.setDefaultLang('en-us');
-    this.translate.use('en-us');
+    this.translate.setDefaultLang('en');
+    this.translate.use('en');
   }
 
   useLanguage(language: string) {
