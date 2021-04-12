@@ -16,13 +16,11 @@ import { MatInputModule } from '@angular/material/input';
 import { LangSelectorComponent } from './lang-selector/lang-selector.component';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
-import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
     LangSelectorComponent,
     HeaderComponent,
-    MenuComponent,
   ],
   imports: [
     CommonModule,

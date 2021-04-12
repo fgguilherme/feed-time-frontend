@@ -9,8 +9,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  username = 'pipoca!';
-  notifications: any;
 
   constructor(
     private router: Router,
@@ -27,6 +25,10 @@ export class HeaderComponent implements OnInit {
   }
 
   setLanguage(data: string): void {
+
+  }
+
+  goToReports(): void{
 
   }
 }
