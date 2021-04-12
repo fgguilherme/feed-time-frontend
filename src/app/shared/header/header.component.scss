@@ -1,0 +1,22 @@
+.header-container {
+  position: relative;
+  flex-direction: row;
+}
+
+.lang-container {
+  height: 2rem;
+  position: absolute;
+  right: 0;
+}
+
+.lang-menu {
+  justify-content: end;
+  align-content: flex-end;
+}
+
+.icon-header {
+  margin-top: 0.2rem;
+  margin-left: 0.2rem;
+  max-width: 15rem;
+  max-height: 3rem;
+}

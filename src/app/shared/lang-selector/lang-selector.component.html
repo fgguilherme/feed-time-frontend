@@ -1,0 +1,16 @@
+<div>
+    <mat-menu #language="matMenu">
+        <button mat-menu-item (click)="setLanguage('pt-br')">
+            <img src="../../../assets/images/lang/pt-br.svg" class="lang-menu-img" /> Português
+        </button>
+        <button mat-menu-item (click)="setLanguage('en')">
+            <img src="../../../assets/images/lang/en.svg" class="lang-menu-img" /> English
+        </button>
+    </mat-menu>
+
+    <button class="profile-border" mat-stroked-button [matMenuTriggerFor]="language"
+        matTooltip="{{'app.Choose_language' | translate}}">
+        <img src="../assets/images/lang/{{getLanguage()}}.svg" class="lang-menu-img" />
+        <mat-icon class="material-icons-outlined">expand_more</mat-icon>
+    </button>
+</div>
