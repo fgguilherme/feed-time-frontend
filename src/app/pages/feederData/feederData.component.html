@@ -13,13 +13,14 @@
                         <div class="col-sm-11 col-md-5 col-lg-5 input-feeder-innercard">
                             <mat-form-field appearance="fill" class="input-feeder-selector">
                                 <mat-label>{{'feeder.location' | translate}}</mat-label>
-                                <mat-select name="food">
-                                    <mat-option *ngFor="let food of foods" [value]="food.value">
-                                        {{food.viewValue}}
+                                <mat-select name="locations">
+                                    <mat-option *ngFor="let l of locations" [value]="l.idlocation">
+                                        {{l.location}}
                                     </mat-option>
                                 </mat-select>
                             </mat-form-field>
                             <button class="profile-border bt-add" mat-button
+                                (click)="openAddLocation()"
                                 matTooltip="{{'feeder.new-location' | translate}}" style="outline: none;">
                                 <mat-icon class="material-icons-outlined">note_add</mat-icon>
                             </button>
@@ -28,12 +29,13 @@
                             <mat-form-field appearance="fill" class="input-feeder-selector">
                                 <mat-label>{{'feeder.food' | translate}}</mat-label>
                                 <mat-select name="food">
-                                    <mat-option *ngFor="let food of foods" [value]="food.value">
-                                        {{food.viewValue}}
+                                    <mat-option *ngFor="let food of foods" [value]="food.idfood">
+                                        {{food.food}}
                                     </mat-option>
                                 </mat-select>
                             </mat-form-field>
                             <button class="profile-border bt-add" mat-button
+                                (click)="openAddFood()"
                                 matTooltip="{{'feeder.new-food' | translate}}" style="outline: none;">
                                 <mat-icon class="material-icons-outlined">note_add</mat-icon>
                             </button>
@@ -44,13 +46,14 @@
                         <div class="col-sm-11 col-md-5 col-lg-5 input-feeder-innercard">
                             <mat-form-field appearance="fill" class="input-feeder-selector">
                                 <mat-label>{{'feeder.kind' | translate}}</mat-label>
-                                <mat-select name="food">
-                                    <mat-option *ngFor="let food of foods" [value]="food.value">
-                                        {{food.viewValue}}
+                                <mat-select name="kinds">
+                                    <mat-option *ngFor="let k of kinds" [value]="k.idkind">
+                                        {{k.kind}}
                                     </mat-option>
                                 </mat-select>
                             </mat-form-field>
                             <button class="profile-border bt-add" mat-button
+                                (click)="openAddKind()"
                                 matTooltip="{{'feeder.new-kind' | translate}}" style="outline: none;">
                                 <mat-icon class="material-icons-outlined">note_add</mat-icon>
                             </button>
@@ -70,7 +73,7 @@
 
                     <div class="row justify-content-center">
                         <div class="col-sm-11 col-md-5 col-lg-5 input-feeder-innercard">
-                            <button mat-raised-button color="primary" class="bt-save"><mat-icon class="material-icons-outlined">note_add</mat-icon>{{'feeder.save' | translate}}</button>
+                            <button mat-raised-button color="primary" class="bt-save" (click)="openSaveConfirmation()"><mat-icon class="material-icons-outlined">note_add</mat-icon>{{'feeder.save' | translate}}</button>
                         </div>
                         <div class="col-sm-11 col-md-5 col-lg-5 input-feeder-innercard">
                             <mat-form-field class="input-feeder-number-selector">

@@ -1,0 +1,22 @@
+<div class="text-center" class="modal--width">
+
+    <h1 class="semi-bold spacing-confirmation"> {{data.title}} </h1>
+    <p class="spacing-doubt"> {{data.message}} </p>
+    <br>
+
+    <div mat-dialog-actions>
+        <div class="container">
+            <div class="row mb-4 mt-4">
+                <div class="col-md-9 ml150">
+                    <button mat-raised-button class="btn--group-space remove-shadow" (click)="cancel(false)">
+                        {{data.cancelName}}
+                    </button>
+                    <button mat-raised-button [mat-dialog-close]='true'>
+                        {{data.confirmName}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
