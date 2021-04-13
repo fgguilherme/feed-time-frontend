@@ -1,0 +1,91 @@
+<div class="row justify-content-center">
+    <mat-card class="col-md-12 col-sm-12 col-lg-10 mat-elevation-z8 input-feeder-card">
+        <mat-card-header>
+            <mat-card-title>{{'feeder.info' | translate}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="row">
+                <mat-calendar class="col-md-6 col-sm-12 col-lg-3" [selected]="selectedDate"
+                    (selectedChange)="onDateSelect($event)"></mat-calendar>
+                <div class="col-md-6 col-sm-12 col-lg-9">
+
+                    <div class="row justify-content-center">
+                        <div class="col-sm-11 col-md-5 col-lg-5 input-feeder-innercard">
+                            <mat-form-field appearance="fill" class="input-feeder-selector">
+                                <mat-label>{{'feeder.location' | translate}}</mat-label>
+                                <mat-select name="food">
+                                    <mat-option *ngFor="let food of foods" [value]="food.value">
+                                        {{food.viewValue}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <button class="profile-border bt-add" mat-button
+                                matTooltip="{{'feeder.new-location' | translate}}" style="outline: none;">
+                                <mat-icon class="material-icons-outlined">note_add</mat-icon>
+                            </button>
+                        </div>
+                        <div class="col-sm-11 col-md-5 col-lg-5 input-feeder-innercard">
+                            <mat-form-field appearance="fill" class="input-feeder-selector">
+                                <mat-label>{{'feeder.food' | translate}}</mat-label>
+                                <mat-select name="food">
+                                    <mat-option *ngFor="let food of foods" [value]="food.value">
+                                        {{food.viewValue}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <button class="profile-border bt-add" mat-button
+                                matTooltip="{{'feeder.new-food' | translate}}" style="outline: none;">
+                                <mat-icon class="material-icons-outlined">note_add</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <div class="col-sm-11 col-md-5 col-lg-5 input-feeder-innercard">
+                            <mat-form-field appearance="fill" class="input-feeder-selector">
+                                <mat-label>{{'feeder.kind' | translate}}</mat-label>
+                                <mat-select name="food">
+                                    <mat-option *ngFor="let food of foods" [value]="food.value">
+                                        {{food.viewValue}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <button class="profile-border bt-add" mat-button
+                                matTooltip="{{'feeder.new-kind' | translate}}" style="outline: none;">
+                                <mat-icon class="material-icons-outlined">note_add</mat-icon>
+                            </button>
+                        </div>
+                        <div class="col-sm-11 col-md-5 col-lg-5 input-feeder-innercard">
+                            <mat-form-field class="input-feeder-number-selector">
+                                <input
+                                type="number"
+                                matInput
+                                name="value"
+                                min=0
+                                placeholder="{{'feeder.ducks-total' | translate}}"
+                                formControlName="value">
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <div class="col-sm-11 col-md-5 col-lg-5 input-feeder-innercard">
+                            <button mat-raised-button color="primary" class="bt-save"><mat-icon class="material-icons-outlined">note_add</mat-icon>{{'feeder.save' | translate}}</button>
+                        </div>
+                        <div class="col-sm-11 col-md-5 col-lg-5 input-feeder-innercard">
+                            <mat-form-field class="input-feeder-number-selector">
+                                <input
+                                type="number"
+                                matInput
+                                name="value"
+                                min=0
+                                placeholder="{{'feeder.quantity' | translate}}"
+                                formControlName="value">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
