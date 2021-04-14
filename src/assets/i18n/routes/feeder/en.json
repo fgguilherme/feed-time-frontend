@@ -12,6 +12,7 @@
     "saveMsg" : "Save current data?",
     "new-location" : "Add New Location",
     "new-food" : "Add New Food",
-    "new-kind" : "Add New Kind of Food"
+    "new-kind" : "Add New Kind of Food",
+    "missingData" : "Incomplete Information"
   }
 }

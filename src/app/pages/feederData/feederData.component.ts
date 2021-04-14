@@ -13,6 +13,7 @@ import { DialogConfirmationComponent } from 'src/app/shared/dialog-confirmation/
 import { DialogNewSingleFieldComponent } from 'src/app/shared/dialog-new-single/dialog-new-single.component';
 import { DateRange, MatCalendarCellCssClasses } from '@angular/material/datepicker';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ApiPostResponse } from 'src/app/models/apipostresponse.model';
 
 @Component({
   selector: 'app-feederData',
@@ -26,11 +27,12 @@ export class FeederDataComponent implements OnInit{
   selectedLocation: number = 0;
   totalDucks = 0;
   totalFood = 0;
+  feedTime = "";
   rangedDate?: DateRange<Date>;
   urlLocation = environment.api + "location"
   urlKind = environment.api + "foodkind"
   urlFood = environment.api + "food"
-  urlFeederData = environment.api + "farmerdata"
+  urlFeederData = environment.api + "feederdatas"
   
   foods: Food[] = [];
   locations: Location[] = [];
@@ -59,7 +61,6 @@ export class FeederDataComponent implements OnInit{
   }
 
   onDateSelect(evt: any){
-    console.log(evt)
     if(this.rangedDate){
       if(this.rangedDate.end){
         this.rangedDate = new DateRange(evt,null)
@@ -68,7 +69,6 @@ export class FeederDataComponent implements OnInit{
       }else{
         this.rangedDate = new DateRange(evt,this.rangedDate.start)
       }
-      console.log(this.rangedDate)
     }else{
       this.rangedDate = new DateRange(evt,null)
     }
@@ -85,10 +85,9 @@ export class FeederDataComponent implements OnInit{
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result != "false" && result){
-        this.httpClient.post<ApiResponse>(this.urlFood, { food: result }).subscribe({
+        this.httpClient.post<ApiPostResponse>(this.urlFood, { food: result }).subscribe({
             next: d => {
-                console.log(d)
-                // this.foods.push({idfood:number(d.data),food:result})
+                this.foods.push({idfood:d.data,food:result})
             },
             error: error => {
                 console.error('There was an error!', error);
@@ -109,9 +108,9 @@ export class FeederDataComponent implements OnInit{
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result != "false" && result){
-        this.httpClient.post<ApiResponse>(this.urlKind, { kind: result }).subscribe({
+        this.httpClient.post<ApiPostResponse>(this.urlKind, { kind: result }).subscribe({
             next: d => {
-              // this.kinds.push({idkind:number(d.data),kind:result})
+              this.kinds.push({idkind:d.data,kind:result})
             },
             error: error => {
                 console.error('There was an error!', error);
@@ -121,7 +120,24 @@ export class FeederDataComponent implements OnInit{
     });
   }
 
+  checkToSave(){
+    let res = true;
+    if( this.feedTime.length == 0 || 
+        this.selectedFood == 0 || 
+        this.selectedKind == 0 || 
+        this.selectedLocation == 0 ||
+        this.totalDucks < 1 ||
+        this.totalFood < 1 ||
+        !this.rangedDate ||
+        !this.rangedDate?.start
+        ){
+          res = false
+    }
+    return res
+  }
+
   openAddLocation(){
+
     const dialogRef = this.dialog.open(DialogNewSingleFieldComponent, {
       data: {
         title:      this.translateService.instant('feeder.new-location'),
@@ -132,10 +148,9 @@ export class FeederDataComponent implements OnInit{
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result != "false" && result){
-        this.httpClient.post<ApiResponse>(this.urlLocation, { location: result }).subscribe({
+        this.httpClient.post<ApiPostResponse>(this.urlLocation, { location: result }).subscribe({
             next: d => {
-                console.log(d)
-                this.router.navigate(['/'])
+              this.locations.push({idlocation:d.data,location:result})
             },
             error: error => {
                 console.error('There was an error!', error);
@@ -145,12 +160,27 @@ export class FeederDataComponent implements OnInit{
     });
   }
 
+  updateTotalDucks(evt:any){
+    this.totalDucks = Number(evt.target.value)
+  }
+
+  updateTotalFood(evt:any){
+    this.totalFood = Number(evt.target.value)
+  }
+
+  updateTime(evt:any){
+    this.feedTime = evt.target.value
+  }
+
   openSaveConfirmation(){
-    this.snackBar.open('Cannonball!!', 'End now', {
-      duration: 500,
-      horizontalPosition: "center",
-      verticalPosition: "bottom",
-    });
+    if(!this.checkToSave()){
+      this.snackBar.open(this.translateService.instant('feeder.missingData'), '', {
+        duration: 1500,
+        horizontalPosition: "center",
+        verticalPosition: "bottom",
+      });
+      return
+    }
     const dialogRef = this.dialog.open(DialogConfirmationComponent, {
       data: {
         title:      this.translateService.instant('feeder.saveTitle'),
@@ -166,16 +196,26 @@ export class FeederDataComponent implements OnInit{
           this.rangedDate = new DateRange(this.rangedDate!.start,this.rangedDate!.start)
         }
         
-        // this.httpClient.post<ApiResponse>(this.urlFeederData, { feedTime: selectedDate , totalDucks:this.totalDucks, quantity: this.totalFood, location: this.selectedLocation, food: this.selectedFood, kind: this.selectedKind }).subscribe({
-        //     next: d => {
-        //         console.log(d)
-        //         // {error: false, message: "Data added successfully!", data: 7}
-        //         this.router.navigate(['/'])
-        //     },
-        //     error: error => {
-        //         console.error('There was an error!', error);
-        //     }
-        // })
+        this.httpClient.post<ApiPostResponse>(this.urlFeederData, { 
+                                                                startDate: this.rangedDate!.start?.toISOString().slice(0, 10).replace('T', ' '), 
+                                                                endDate: this.rangedDate!.end?.toISOString().slice(0, 10).replace('T', ' '), 
+                                                                feedTime: this.feedTime,
+                                                                totalDucks:this.totalDucks, 
+                                                                quantity: this.totalFood, 
+                                                                location: this.selectedLocation, 
+                                                                food: this.selectedFood, 
+                                                                kind: this.selectedKind 
+                                                              }
+                                                              ).subscribe({
+            next: d => {
+                // {error: false, message: "Data added successfully!", data: 7}
+                console.log(d)
+                this.router.navigate(['/'])
+            },
+            error: error => {
+                console.error('There was an error!', error);
+            }
+        })
       }
     });
   }

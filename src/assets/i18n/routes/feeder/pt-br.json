@@ -12,6 +12,7 @@
     "saveMsg" : "Salvar os dados atuais?",
     "new-location" : "Novo Local",
     "new-food" : "Nova Comida",
-    "new-kind" : "Novo Tipo de Comida"
+    "new-kind" : "Novo Tipo de Comida",
+    "missingData" : "Informação incompleta"
   }
 }

@@ -13,7 +13,7 @@
                         <div class="col-sm-11 col-md-5 col-lg-5 input-feeder-innercard">
                             <mat-form-field appearance="fill" class="input-feeder-selector">
                                 <mat-label>{{'feeder.location' | translate}}</mat-label>
-                                <mat-select name="locations">
+                                <mat-select name="locations" [(value)]="selectedLocation">
                                     <mat-option *ngFor="let l of locations" [value]="l.idlocation">
                                         {{l.location}}
                                     </mat-option>
@@ -28,7 +28,7 @@
                         <div class="col-sm-11 col-md-5 col-lg-5 input-feeder-innercard">
                             <mat-form-field appearance="fill" class="input-feeder-selector">
                                 <mat-label>{{'feeder.food' | translate}}</mat-label>
-                                <mat-select name="food">
+                                <mat-select name="food" [(value)]="selectedFood">
                                     <mat-option *ngFor="let food of foods" [value]="food.idfood">
                                         {{food.food}}
                                     </mat-option>
@@ -46,7 +46,7 @@
                         <div class="col-sm-11 col-md-5 col-lg-5 input-feeder-innercard">
                             <mat-form-field appearance="fill" class="input-feeder-selector">
                                 <mat-label>{{'feeder.kind' | translate}}</mat-label>
-                                <mat-select name="kinds">
+                                <mat-select name="kinds" [(value)]="selectedKind">
                                     <mat-option *ngFor="let k of kinds" [value]="k.idkind">
                                         {{k.kind}}
                                     </mat-option>
@@ -63,6 +63,7 @@
                                 <input
                                 type="number"
                                 matInput
+                                (change)="updateTotalDucks($event)"
                                 name="value"
                                 min=0
                                 placeholder="{{'feeder.ducks-total' | translate}}"
@@ -74,7 +75,8 @@
                     <div class="row justify-content-center">
                         <div class="col-sm-11 col-md-5 col-lg-5 input-feeder-innercard">
                             <mat-form-field >
-                                <input matInput type="time" >
+                                <input matInput type="time" 
+                                (change)="updateTime($event)">
                             </mat-form-field>
                         </div>
                         <div class="col-sm-11 col-md-5 col-lg-5 input-feeder-innercard">
@@ -82,6 +84,7 @@
                                 <input
                                 type="number"
                                 matInput
+                                (change)="updateTotalFood($event)"
                                 name="value"
                                 min=0
                                 placeholder="{{'feeder.quantity' | translate}}"

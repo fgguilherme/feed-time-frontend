@@ -1,4 +1,4 @@
 export class FoodKind {
-    idkind!: string;
+    idkind!: number;
     kind!: string;
   }
