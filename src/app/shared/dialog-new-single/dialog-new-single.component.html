@@ -1,0 +1,31 @@
+<div class="text-center" class="modal--width">
+
+    <h1 class="semi-bold spacing-confirmation"> {{data.title}} </h1>
+        <input
+        type="text"
+        matInput
+        name="value"
+        min=0
+        placeholder= "{{data.inputText}}"
+        #inputNewString>
+    <br>
+
+    <div mat-dialog-actions>
+        <div class="container">
+            <div class="row mb-4 mt-4">
+                <div class="col-md-9 ml150">
+
+                    <button mat-raised-button class="btn--group-space remove-shadow" (click)="cancel(false)">
+                        {{data.cancelName}}
+                    </button>
+
+                    <!-- Use mat-dialog-close to set datas after send values -->
+                    <button mat-raised-button [mat-dialog-close]='inputNewString.value'>
+                        {{data.confirmName}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,18 @@
+{
+  "feeder": {
+    "welcome": "Olá Mundo Feeder",
+    "location" : "Local da alimentação",
+    "food" : "Comida oferecida",
+    "info" : "Informação de Alimentação",
+    "kind" : "Tipo de comida",
+    "ducks-total" : "Número de Patos",
+    "quantity" : "Quantidade de Comida",
+    "save" : "Salvar",
+    "saveTitle" : "Confirmação de Persistencia dos dados",
+    "saveMsg" : "Salvar os dados atuais?",
+    "new-location" : "Novo Local",
+    "new-food" : "Nova Comida",
+    "new-kind" : "Novo Tipo de Comida",
+    "missingData" : "Informação incompleta"
+  }
+}

@@ -29,6 +29,6 @@ export class HeaderComponent implements OnInit {
   }
 
   goToReports(): void{
-
+    this.router.navigate(['/reports'])
   }
 }

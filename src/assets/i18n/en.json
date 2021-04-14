@@ -3,6 +3,8 @@
     "language": "Language",
     "choose_language": "Choose language",
     "report": "Reports",
-    "options": "Options"
+    "options": "Options",
+    "cancel": "Cancel",
+    "confirm": "OK"
   }
 }

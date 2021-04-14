@@ -1,0 +1,25 @@
+@import "../../../node_modules/bootstrap/scss/bootstrap.scss";
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+.input-feeder-card{
+    margin: 2rem;
+}
+.input-feeder-innercard{
+    margin: 0.5rem;
+}
+.input-feeder-selector{
+    width: 75%;
+}
+.input-feeder-number-selector{
+    max-width: 100%;
+    min-width: 50%;
+}
+.bt-add{
+    height: 3rem;
+}
+.bt-save{
+    font-size: 1,5rem;
+    height: 3rem;
+    max-width: 100%;
+    min-width: 50%;
+}

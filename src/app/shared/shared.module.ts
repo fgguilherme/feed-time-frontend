@@ -16,11 +16,15 @@ import { MatInputModule } from '@angular/material/input';
 import { LangSelectorComponent } from './lang-selector/lang-selector.component';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
+import { DialogConfirmationComponent } from './dialog-confirmation/dialog-confirmation.component';
+import { DialogNewSingleFieldComponent } from './dialog-new-single/dialog-new-single.component';
 
 @NgModule({
   declarations: [
     LangSelectorComponent,
     HeaderComponent,
+    DialogConfirmationComponent,
+    DialogNewSingleFieldComponent,
   ],
   imports: [
     CommonModule,
@@ -51,6 +55,8 @@ import { HeaderComponent } from './header/header.component';
     MatFormFieldModule,
     HeaderComponent,
     LangSelectorComponent,
+    DialogConfirmationComponent,
+    DialogNewSingleFieldComponent,
   ],
 })
 export class SharedModule {}

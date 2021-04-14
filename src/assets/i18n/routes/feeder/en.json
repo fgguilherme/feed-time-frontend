@@ -1,0 +1,18 @@
+{
+  "feeder": {
+    "welcome": "Hello World from Feeder",
+    "location" : "Feed Location",
+    "food" : "Food Offered",
+    "info" : "Feed Information",
+    "kind" : "Kind of Food",
+    "ducks-total" : "Number of Ducks",
+    "quantity" : "Quantity of Food",
+    "save" : "Save",
+    "saveTitle" : "Data Save Confirmation",
+    "saveMsg" : "Save current data?",
+    "new-location" : "Add New Location",
+    "new-food" : "Add New Food",
+    "new-kind" : "Add New Kind of Food",
+    "missingData" : "Incomplete Information"
+  }
+}

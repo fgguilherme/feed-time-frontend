@@ -1,0 +1,108 @@
+<div class="row justify-content-center">
+    <mat-card class="col-md-12 col-sm-12 col-lg-10 mat-elevation-z8 input-feeder-card">
+        <mat-card-header>
+            <mat-card-title>{{'feeder.info' | translate}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="row">
+                <mat-calendar class="col-md-6 col-sm-12 col-lg-3" 
+                [selected]="rangedDate" (selectedChange)="onDateSelect($event)"></mat-calendar>
+                <div class="col-md-6 col-sm-12 col-lg-9">
+
+                    <div class="row justify-content-center">
+                        <div class="col-sm-11 col-md-5 col-lg-5 input-feeder-innercard">
+                            <mat-form-field appearance="fill" class="input-feeder-selector">
+                                <mat-label>{{'feeder.location' | translate}}</mat-label>
+                                <mat-select name="locations" [(value)]="selectedLocation">
+                                    <mat-option *ngFor="let l of locations" [value]="l.idlocation">
+                                        {{l.location}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <button class="profile-border bt-add" mat-button
+                                (click)="openAddLocation()"
+                                matTooltip="{{'feeder.new-location' | translate}}" style="outline: none;">
+                                <mat-icon class="material-icons-outlined">note_add</mat-icon>
+                            </button>
+                        </div>
+                        <div class="col-sm-11 col-md-5 col-lg-5 input-feeder-innercard">
+                            <mat-form-field appearance="fill" class="input-feeder-selector">
+                                <mat-label>{{'feeder.food' | translate}}</mat-label>
+                                <mat-select name="food" [(value)]="selectedFood">
+                                    <mat-option *ngFor="let food of foods" [value]="food.idfood">
+                                        {{food.food}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <button class="profile-border bt-add" mat-button
+                                (click)="openAddFood()"
+                                matTooltip="{{'feeder.new-food' | translate}}" style="outline: none;">
+                                <mat-icon class="material-icons-outlined">note_add</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <div class="col-sm-11 col-md-5 col-lg-5 input-feeder-innercard">
+                            <mat-form-field appearance="fill" class="input-feeder-selector">
+                                <mat-label>{{'feeder.kind' | translate}}</mat-label>
+                                <mat-select name="kinds" [(value)]="selectedKind">
+                                    <mat-option *ngFor="let k of kinds" [value]="k.idkind">
+                                        {{k.kind}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <button class="profile-border bt-add" mat-button
+                                (click)="openAddKind()"
+                                matTooltip="{{'feeder.new-kind' | translate}}" style="outline: none;">
+                                <mat-icon class="material-icons-outlined">note_add</mat-icon>
+                            </button>
+                        </div>
+                        <div class="col-sm-11 col-md-5 col-lg-5 input-feeder-innercard">
+                            <mat-form-field class="input-feeder-number-selector">
+                                <input
+                                type="number"
+                                matInput
+                                (change)="updateTotalDucks($event)"
+                                name="value"
+                                min=0
+                                placeholder="{{'feeder.ducks-total' | translate}}"
+                                formControlName="value">
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <div class="col-sm-11 col-md-5 col-lg-5 input-feeder-innercard">
+                            <mat-form-field >
+                                <input matInput type="time" 
+                                (change)="updateTime($event)">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-11 col-md-5 col-lg-5 input-feeder-innercard">
+                            <mat-form-field class="input-feeder-number-selector">
+                                <input
+                                type="number"
+                                matInput
+                                (change)="updateTotalFood($event)"
+                                name="value"
+                                min=0
+                                placeholder="{{'feeder.quantity' | translate}}"
+                                formControlName="value">
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <div class="col-sm-11 col-md-5 col-lg-5 input-feeder-innercard">
+                            <button mat-raised-button color="primary" class="bt-save" (click)="openSaveConfirmation()"><mat-icon class="material-icons-outlined">note_add</mat-icon>{{'feeder.save' | translate}}</button>
+                        </div>
+                        <div class="col-sm-11 col-md-5 col-lg-5 input-feeder-innercard">
+                            <!-- keep button aligned with upper row -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
