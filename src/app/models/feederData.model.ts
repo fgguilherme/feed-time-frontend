@@ -1,4 +1,4 @@
-export class FarmerData {
+export class FeederData {
   idfarmer_data!: number;
   feedTime!: string;
   totalDucks!: number;

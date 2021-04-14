@@ -3,16 +3,16 @@ import { LanguageFactory } from './../../shared/lang/language_factory';
 import { TranslateService } from '@ngx-translate/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { DateRange } from '@angular/material/datepicker';
 import { Food } from './../../models/food.model';
 import { FoodKind } from './../../models/foodKind.model';
 import { Location } from './../../models/location.model';
 import { environment } from 'src/environments/environment';
-import { map, catchError, tap } from 'rxjs/operators';
 import { ApiResponse } from 'src/app/models/apiresponse.model';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogConfirmationComponent } from 'src/app/shared/dialog-confirmation/dialog-confirmation.component';
 import { DialogNewSingleFieldComponent } from 'src/app/shared/dialog-new-single/dialog-new-single.component';
+import { DateRange, MatCalendarCellCssClasses } from '@angular/material/datepicker';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-feederData',
@@ -21,8 +21,12 @@ import { DialogNewSingleFieldComponent } from 'src/app/shared/dialog-new-single/
 })
 export class FeederDataComponent implements OnInit{
   
-  selectedValue: string = 'steak-0';
-  selectedDate: Date = new Date();
+  selectedFood: number = 0;
+  selectedKind: number = 0;
+  selectedLocation: number = 0;
+  totalDucks = 0;
+  totalFood = 0;
+  rangedDate?: DateRange<Date>;
   urlLocation = environment.api + "location"
   urlKind = environment.api + "foodkind"
   urlFood = environment.api + "food"
@@ -36,6 +40,7 @@ export class FeederDataComponent implements OnInit{
     private translateService: TranslateService,
     private router: Router,
     public dialog: MatDialog,
+    private snackBar: MatSnackBar,
     private httpClient: HttpClient,
   ) {
     this.loadTranslations() 
@@ -55,7 +60,18 @@ export class FeederDataComponent implements OnInit{
 
   onDateSelect(evt: any){
     console.log(evt)
-    this.selectedDate = evt;
+    if(this.rangedDate){
+      if(this.rangedDate.end){
+        this.rangedDate = new DateRange(evt,null)
+      }else if(this.rangedDate.start && this.rangedDate.start < evt){
+        this.rangedDate = new DateRange(this.rangedDate.start,evt)
+      }else{
+        this.rangedDate = new DateRange(evt,this.rangedDate.start)
+      }
+      console.log(this.rangedDate)
+    }else{
+      this.rangedDate = new DateRange(evt,null)
+    }
   }
 
   openAddFood(){
@@ -68,7 +84,17 @@ export class FeederDataComponent implements OnInit{
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      if(result != "false" && result){
+        this.httpClient.post<ApiResponse>(this.urlFood, { food: result }).subscribe({
+            next: d => {
+                console.log(d)
+                // this.foods.push({idfood:number(d.data),food:result})
+            },
+            error: error => {
+                console.error('There was an error!', error);
+            }
+        })
+      }
     });
   }
   
@@ -82,7 +108,16 @@ export class FeederDataComponent implements OnInit{
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      if(result != "false" && result){
+        this.httpClient.post<ApiResponse>(this.urlKind, { kind: result }).subscribe({
+            next: d => {
+              // this.kinds.push({idkind:number(d.data),kind:result})
+            },
+            error: error => {
+                console.error('There was an error!', error);
+            }
+        })
+      }
     });
   }
 
@@ -96,11 +131,26 @@ export class FeederDataComponent implements OnInit{
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      if(result != "false" && result){
+        this.httpClient.post<ApiResponse>(this.urlLocation, { location: result }).subscribe({
+            next: d => {
+                console.log(d)
+                this.router.navigate(['/'])
+            },
+            error: error => {
+                console.error('There was an error!', error);
+            }
+        })
+      }
     });
   }
 
   openSaveConfirmation(){
+    this.snackBar.open('Cannonball!!', 'End now', {
+      duration: 500,
+      horizontalPosition: "center",
+      verticalPosition: "bottom",
+    });
     const dialogRef = this.dialog.open(DialogConfirmationComponent, {
       data: {
         title:      this.translateService.instant('feeder.saveTitle'),
@@ -110,7 +160,23 @@ export class FeederDataComponent implements OnInit{
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      if(result){
+        let dates: string[] = [];
+        if(!(this.rangedDate?.end)){
+          this.rangedDate = new DateRange(this.rangedDate!.start,this.rangedDate!.start)
+        }
+        
+        // this.httpClient.post<ApiResponse>(this.urlFeederData, { feedTime: selectedDate , totalDucks:this.totalDucks, quantity: this.totalFood, location: this.selectedLocation, food: this.selectedFood, kind: this.selectedKind }).subscribe({
+        //     next: d => {
+        //         console.log(d)
+        //         // {error: false, message: "Data added successfully!", data: 7}
+        //         this.router.navigate(['/'])
+        //     },
+        //     error: error => {
+        //         console.error('There was an error!', error);
+        //     }
+        // })
+      }
     });
   }
 
@@ -127,7 +193,7 @@ export class FeederDataComponent implements OnInit{
       url,
       this.translateService,
       () => {
-        
+        //
       }
     );
   }
