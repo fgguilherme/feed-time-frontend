@@ -1,6 +1,7 @@
 {
   "reports": {
     "title": "Relatório de Alimentação",
+    "export" : "Exportar dados",
     "datetime": "Data/Hora",
     "location" : "Local da alimentação",
     "food" : "Comida oferecida",

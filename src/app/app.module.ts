@@ -25,6 +25,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ReportsComponent } from './pages/reports/reports.component';
 import { MatSortModule } from '@angular/material/sort';
+import { FileSaverModule } from 'ngx-filesaver';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { MatSortModule } from '@angular/material/sort';
     BrowserAnimationsModule,
     SharedModule,
     HttpClientModule,
+    FileSaverModule,
     MatPaginatorModule,
     MatCardModule,
     MatDatepickerModule,
