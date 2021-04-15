@@ -82,6 +82,6 @@ Total hours spent on this project: 12H:
 - [ ] User Management
 - [ ] Docker Deploy
 - [ ] New languages on i18n
-- [ ] Export Report
+- [X] Export Report
 - [ ] Graphs to improve reports
 - [ ] Pagination on Backend - need changes on Front to follow the back structure.

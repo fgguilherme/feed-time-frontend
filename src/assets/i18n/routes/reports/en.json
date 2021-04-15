@@ -1,6 +1,7 @@
 {
   "reports": {
     "title": "Feed Report",
+    "export" : "Export Data",
     "location" : "Feed Location",
     "food" : "Food Offered",
     "datetime": "Date/Time",

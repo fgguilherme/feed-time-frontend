@@ -9,6 +9,8 @@ import { environment } from 'src/environments/environment';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { FileSaverService } from 'ngx-filesaver';
+import * as XLSX from 'xlsx';
 
 
 @Component({
@@ -29,6 +31,7 @@ export class ReportsComponent implements AfterViewInit, OnInit {
   constructor(
     private translateService: TranslateService,
     private router: Router,
+    private _FileSaverService: FileSaverService,
     private httpClient: HttpClient,
   ) {
     this.loadTranslations()
@@ -42,7 +45,17 @@ export class ReportsComponent implements AfterViewInit, OnInit {
     });
     this.loadData()
   }
-        
+
+  exportData(){
+    const fileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+    const fileExtension = '.xlsx';
+    const ws = XLSX.utils.json_to_sheet(this.dataFeed.data);
+    const wb = { Sheets: { 'data': ws }, SheetNames: ['data'] };
+    const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+    const data = new Blob([excelBuffer], {type: fileType});
+    this._FileSaverService.save(data, "report_"+(new Date()).toISOString().split("T")[0]+ fileExtension);
+  }
+
   loadData(){
     this.httpClient.get<any>(this.urlFeedData, {
       params: new HttpParams()

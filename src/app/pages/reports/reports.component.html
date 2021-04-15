@@ -11,6 +11,9 @@
                 <div class="col-sm-6 col-md-6 col-lg-3">
                     <button mat-button color="primary" class="bt-save" (click)="loadData()">{{'reports.load' | translate}}</button>
                 </div>
+                <div class="col-sm-6 col-md-6 col-lg-3">
+                    <button mat-button color="primary" class="bt-save" (click)="exportData()">{{'reports.export' | translate}}</button>
+                </div>
             </div>
             <div class="row justify-content-center">
                 <table mat-table [dataSource]="dataFeed" matSort>
