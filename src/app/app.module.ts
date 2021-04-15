@@ -23,11 +23,14 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ReportsComponent } from './pages/reports/reports.component';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
     AppComponent,
     FeederDataComponent,
+    ReportsComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +46,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatSelectModule,
     MatSnackBarModule,
     MatTableModule,
+    MatSortModule,
     MatIconModule,
     MatTooltipModule,
     MatSelectModule,

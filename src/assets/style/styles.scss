@@ -23,3 +23,68 @@
     max-width: 100%;
     min-width: 50%;
 }
+
+.modal--width {
+    width: 31.25rem !important;
+}
+
+.spacing-confirmation {
+    padding-top: 1.125rem;
+}
+
+.spacing-doubt {
+    padding-top: 1rem;
+    margin-bottom: -1rem;
+}
+
+.ml150 {
+    margin-left: 9.25rem;
+}
+  
+.header-container {
+  position: relative;
+  flex-direction: row;
+}
+
+.lang-container {
+  height: 2rem;
+  width: 10rem;
+  position: absolute;
+  right: 0;
+  justify-content: end;
+}
+
+.options-menu {
+  width: fit-content;
+  display: flex;
+  vertical-align: middle;
+}
+
+.title-header {
+  margin-top: 1rem;
+  margin-left: 1rem;
+  height: 3rem;
+  width: 10rem;
+}
+
+.icon-header {
+  margin-top: 0.2rem;
+  margin-left: 0.2rem;
+  max-width: 15rem;
+  max-height: 3rem;
+}
+
+.profile-border {
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
+  border-left: none !important;
+}
+
+table {
+  width: 80%;
+}
+
+th.mat-sort-header-sorted {
+  color: blue;
+}

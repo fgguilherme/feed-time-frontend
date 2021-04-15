@@ -1,5 +1,12 @@
 {
   "reports": {
-    "welcome": "Hello World from Reports"
+    "title": "Feed Report",
+    "location" : "Feed Location",
+    "food" : "Food Offered",
+    "datetime": "Date/Time",
+    "kind" : "Kind of Food",
+    "ducks-total" : "Number of Ducks",
+    "quantity" : "Quantity of Food",
+    "load": "Update Data"
   }
 }
