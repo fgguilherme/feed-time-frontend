@@ -209,7 +209,6 @@ export class FeederDataComponent implements OnInit{
                                                               ).subscribe({
             next: d => {
                 // {error: false, message: "Data added successfully!", data: 7}
-                console.log(d)
                 this.router.navigate(['/'])
             },
             error: error => {

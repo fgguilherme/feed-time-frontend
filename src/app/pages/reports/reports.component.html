@@ -1,1 +1,65 @@
-<span>{{'reports.welcome' | translate}}</span>
+<div class="row justify-content-center">
+    <mat-card class="col-md-12 col-sm-12 col-lg-10 mat-elevation-z8 input-feeder-card">
+        <mat-card-header>
+            <mat-card-title>{{'reports.title' | translate}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="row justify-content-center">
+                <mat-form-field class="col-sm-6 col-md-6 col-lg-3">
+                  <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
+                </mat-form-field>
+                <div class="col-sm-6 col-md-6 col-lg-3">
+                    <button mat-button color="primary" class="bt-save" (click)="loadData()">{{'reports.load' | translate}}</button>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <table mat-table [dataSource]="dataFeed" matSort>
+                    <!--- Note that these columns can be defined in any order.
+                        The actual rendered columns are set as a property on the row definition" -->
+
+                    <!-- ['feedTime', 'totalDucks', 'quantity', 'food', 'kind', 'location'] -->
+                    
+                    <!-- dataFeed -->
+                    <ng-container matColumnDef="feedTime">
+                    <th mat-header-cell mat-sort-header *matHeaderCellDef> {{'reports.datetime' | translate}} </th>
+                    <td mat-cell *matCellDef="let element"> {{element.feedTime}} </td>
+                    </ng-container>
+                
+                    <!-- totalDucks -->
+                    <ng-container matColumnDef="totalDucks">
+                    <th mat-header-cell mat-sort-header *matHeaderCellDef> {{'reports.ducks-total' | translate}} </th>
+                    <td mat-cell *matCellDef="let element"> {{element.totalDucks}} </td>
+                    </ng-container>
+                
+                    <!-- quantity -->
+                    <ng-container matColumnDef="quantity">
+                    <th mat-header-cell mat-sort-header *matHeaderCellDef> {{'reports.quantity' | translate}} </th>
+                    <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+                    </ng-container>
+                
+                    <!-- food -->
+                    <ng-container matColumnDef="food">
+                    <th mat-header-cell mat-sort-header *matHeaderCellDef> {{'reports.food' | translate}} </th>
+                    <td mat-cell *matCellDef="let element"> {{element.food}} </td>
+                    </ng-container>
+                
+                    <!-- kind -->
+                    <ng-container matColumnDef="kind">
+                    <th mat-header-cell mat-sort-header *matHeaderCellDef> {{'reports.kind' | translate}} </th>
+                    <td mat-cell *matCellDef="let element"> {{element.kind}} </td>
+                    </ng-container>
+                
+                    <!-- location -->
+                    <ng-container matColumnDef="location">
+                    <th mat-header-cell mat-sort-header *matHeaderCellDef> {{'reports.location' | translate}} </th>
+                    <td mat-cell *matCellDef="let element"> {{element.location}} </td>
+                    </ng-container>
+                
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+                <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

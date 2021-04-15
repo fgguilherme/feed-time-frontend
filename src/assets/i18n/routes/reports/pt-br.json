@@ -1,5 +1,12 @@
 {
   "reports": {
-    "welcome": "Olá Mundo Feeder"
+    "title": "Relatório de Alimentação",
+    "datetime": "Data/Hora",
+    "location" : "Local da alimentação",
+    "food" : "Comida oferecida",
+    "kind" : "Tipo de comida",
+    "ducks-total" : "Número de Patos",
+    "quantity" : "Quantidade de Comida",
+    "load": "Atualizar Relatório"
   }
 }

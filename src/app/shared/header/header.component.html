@@ -13,6 +13,9 @@
                 <button mat-menu-item (click)="goToReports()" style="outline: none;">
                     <mat-icon>assignment</mat-icon> {{'app.report' | translate}}
                 </button>
+                <button mat-menu-item (click)="goToFeedData()" style="outline: none;">
+                    <mat-icon>add</mat-icon> {{'app.feeder' | translate}}
+                </button>
             </mat-menu>
 
             <button class="profile-border" mat-stroked-button [matMenuTriggerFor]="systems"

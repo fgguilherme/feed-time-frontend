@@ -31,4 +31,8 @@ export class HeaderComponent implements OnInit {
   goToReports(): void{
     this.router.navigate(['/reports'])
   }
+
+  goToFeedData(): void{
+    this.router.navigate(['/feeder'])
+  }
 }
